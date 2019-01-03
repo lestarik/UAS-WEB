@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+	<link href="02.png" rel="shortcut icon">
+	<meta charset="UTF-8">
+	<title>website Resmi Pemerintahan Kabupaten Bangli</title>
+	<script src="http://codetrash.com/assets/js/jquery-1.10.2.min.js"></script>
+  <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="stylee.css">
+	<script type=" text/javascript">
+		function tampilKota(propinsi)
+		{
+			alert("Tampil kota pada propinsi"+propinsi);
+		}
+	</script>
+	<script>
+  $(function(){
+         
+    //ketika submit button d click
+    $("#submit-form").click(function(){
+         
+         //do ajax proses
+         $.ajax({
+           
+           url : "register.php", 
+           type: "post", //form method
+           data: $("#contoh-form").serialize(),
+           dataType:"json", //misal kita ingin format datanya brupa json
+           beforeSend:function(){
+             //lakukan apasaja sambil menunggu proses selesai disini
+             //misal tampilkan loading
+             
+             $(".loading").html("Please wait....");
+             
+           },
+           success:function(result){
+             
+             if(result.status){
+               
+               alert("Selamat, resgistari sukses");
+               window.location.href = "http://example.com/index.php";
+               
+             }else{
+               
+               alert("harap isi smw inputan");
+             }
+             
+           },
+           error: function(xhr, Status, err) {
+             
+             $("Terjadi error : "+Status);
+           }
+           
+         });
+              
+       return false;
+     })
+  
+  });
+ </script>
+ <html lang="en">
+<head><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css">
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+<script src="resgistari.js"></script>
+
+</head>
+
+<body>
+	<p id="demo"></p>
+
+<div class="container">
+	
+	<div class="header">
+<!-- 		<h1>website Resmi Pemerintahan Kabupaten Bangli</h1> -->
+			<img src="01.png" width="400" height="120" alt="head" class="logo">
+	</div> <!--/ .header -->
+	 <div>
+    <h2>Form Submitted Successfully...!!</h2>
+
+    <br>
+    <span class="loading"></span>
+  </div>
+   <!-- ------------ First page for form ---------->
+<div data-role="page">
+<!----------- First page header -------->
+<div data-role="header">
+<h1>Register</h1>
+</div>
+<!----------- First page main content ---------->
+<div data-role="main" class="ui-content">
+<form method="post" action="#pageone" data-ajax="false">
+<label for="name">Name : <span>*</span></label>
+<input type="text" name="name" id="name" placeholder="Name">
+<label for="email">Email: <span>*</span></label>
+<input type="email" id="email" name="email" placeholder="Email"/>
+<fieldset data-role="controlgroup">
+<legend>Gender:</legend>
+<label for="male">Male</label>
+<input type="radio" name="gender" id="male" value="male">
+<label for="female">Female</label>
+<input type="radio" name="gender" id="female" value="female">
+</fieldset>
+<fieldset data-role="controlgroup">
+<legend>Qualification:</legend>
+<label for="graduation">Graduation</label>
+<input type="checkbox" id="graduation" value="graduation">
+<label for="postgraduation">Post Graduation</label>
+<input type="checkbox" id="postgraduation" value="postgraduation">
+<label for="other">Other</label>
+<input type="checkbox" id="other" value="other">
+</fieldset>
+<label for="info">Message:</label>
+<textarea name="addinfo" id="info" placeholder="Message"></textarea>
+<input type="submit" data-inline="true" value="Submit" data-theme="b">
+</form>
+</div>
+
+<!-------------- Second page -----------> -->
+<div data-role="page" id="pageone">
+<!-- <!-------------- Second page header -----------> -->
+<div data-role="header">
+<h1>Register</h1>
+</div>
+<!-- <!-------------- Second page main content -----------> -->
+<div data-role="main" class="ui-content">
+<h2>Form Submitted Successfully...!!</h2>
+</div>
+</div>
+ 
+</body>
+</html>
